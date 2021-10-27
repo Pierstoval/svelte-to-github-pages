@@ -11,8 +11,10 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		
-		adapter: adapter()
+
+		adapter: adapter(),
+
+		paths: {base: process.env.GITHUB_ACTION ? process.env.GITHUB_REPOSITORY.replace(/^[^/]+\//gi, '/') : ''},
 	}
 };
 
