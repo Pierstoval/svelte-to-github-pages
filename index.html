@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+
+		
+
+		<link rel="modulepreload" href="/_app/start-f3ed5cc9.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-ce93ce47.js">
+		<link rel="modulepreload" href="/_app/layout.svelte-3e33bffc.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-2bd2dfb7.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+
+		<script type="module">
+			import { start } from "/_app/start-f3ed5cc9.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/layout.svelte-3e33bffc.js"),
+						import("/_app/pages/index.svelte-2bd2dfb7.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002F",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<h1>Welcome to SvelteKit</h1>
+
+<p>Counter: 0</p>
+
+<button>Increment counter</button>
+
+
+
+			
+		</div>
+	</body>
+</html>
