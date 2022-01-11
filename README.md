@@ -1,38 +1,18 @@
-# create-svelte
+# From Svelte to Github Pages
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+This is a really standard Svelte-kit app, but it is adapted so that on every `git push`, it deploys a static app to Github Pages.
 
-## Creating a project
+## How it works
 
-If you're seeing this, you've probably already done this step. Congrats!
+There are several modification steps to do in order to update the default Svelte Kit app to be compatible with Github Pages on deploy.
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+* Add the `@sveltejs/adapter-static` package and use it as `adapter` variable in `svelte.config.js`.
+* Add `paths: {base: process.env.GITHUB_ACTION ? process.env.GITHUB_REPOSITORY.replace(/^[^/]+\//gi, '/') : ''}` to the `config.kit` configuration option. This ensures that the base path corresponds to Github Pages' default sub-directory name (which is set to your repository name).
+  <br>ℹ Note: if you host it at the root of a domain, you can omit this change.
+* Create a ` .github/workflows/deploy_to_pages.yaml` file for deployment.
+  <br>Check it out [here](https://github.com/Pierstoval/svelte-to-github-pages/blob/main/.github/workflows/deploy_to_pages.yaml) in this repository to know what to write in it.
+* You might have to change absolute links to relative links in `src/app.html`, because Github Pages are by default hosted in a sub-directory (for example, by default, Svelte has a `favicon` link that you might want to change).
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+This should be enough 😉
 
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+Check out [this diff](https://github.com/Pierstoval/svelte-to-github-pages/compare/95acf480da6a6370360c2ea40b139bd4bfd6b290...75c1be7a02a91b2b28621882565f02cc6c14e3c4) to see the changes (it doesn't contain the changes to the adapter though).
